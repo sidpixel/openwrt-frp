@@ -49,7 +49,7 @@ fi
 cd "$dir"
 
 file "$sdk_dir/$sdk_file"
-tar -Jxf "$sdk_dir/$sdk_file" -C "$sdk_home_dir" --strip=1
+tar  -I zstd -Jxf "$sdk_dir/$sdk_file" -C "$sdk_home_dir" --strip=1
 
 cd "$sdk_home_dir"
 
