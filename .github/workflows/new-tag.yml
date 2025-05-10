@@ -6,6 +6,8 @@ on:
       - "releases/v*"
     tags-ignore:
       - "*"
+    workflow_dispatch:
+
 
 jobs:
   build:
