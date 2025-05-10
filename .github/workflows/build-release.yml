@@ -11,7 +11,7 @@ on:
 jobs:
   release:
     name: Build for ${{ matrix.arch }}
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
@@ -70,9 +70,12 @@ jobs:
           - arch: i386_pentium
             sdk_url_path: https://downloads.openwrt.org/snapshots/targets/x86/legacy
             sdk_name: -sdk-x86-legacy_
-          - arch: i386_pentium4
+          - arch: i386_pentium4_1907
             sdk_url_path: https://downloads.openwrt.org/releases/19.07.10/targets/x86/generic
             sdk_name: -sdk-19.07.10-x86-generic_
+          - arch: i386_pentium4
+            sdk_url_path: https://downloads.openwrt.org/snapshots/targets/x86/generic
+            sdk_name: -sdk-x86-generic
           - arch: mips64_octeon
             sdk_url_path: http://downloads.openwrt.org/releases/18.06.5/targets/octeon/generic
             sdk_name: -sdk-18.06.5-octeon_
@@ -136,7 +139,7 @@ jobs:
       - name: Install Dependencies
         run: |
           sudo apt-get update && \
-            sudo apt-get install -yq gettext libncurses5-dev xsltproc python2
+            sudo apt-get install -yq gettext libncurses5-dev xsltproc
 
       - name: Prepare SDK Home
         run: |
