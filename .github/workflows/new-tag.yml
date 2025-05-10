@@ -13,7 +13,7 @@ jobs:
   build:
     runs-on: ubuntu-22.04
     env:
-      SDK_URL_PATH: https://downloads.openwrt.org/releases/19.07.10/targets/x86/64
+      SDK_URL_PATH: https://downloads.openwrt.org/snapshots/targets/x86/64
       ARCH: x86_64
       CACHE_DIR: ~/cache
     steps:
