@@ -52,14 +52,13 @@ jobs:
           retention-days: 7
 
   tag:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     needs: build
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 10
-          token: ${{ secrets.PAT }}
 
       - name: Get Version
         id: get_version
