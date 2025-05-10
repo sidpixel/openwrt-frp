@@ -6,7 +6,7 @@ on:
       - "releases/v*"
     tags-ignore:
       - "*"
-    workflow_dispatch:
+  workflow_dispatch:
 
 
 jobs:
