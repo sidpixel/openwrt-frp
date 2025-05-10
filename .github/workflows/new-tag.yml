@@ -47,8 +47,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: frp
-          path: |
-            "**/*.apk"
+          path: ${{ env.SDK_HOME }}/**/*.apk
           retention-days: 7
 
   tag:
