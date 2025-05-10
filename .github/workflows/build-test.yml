@@ -12,16 +12,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      SDK_URL_PATH: https://downloads.openwrt.org/snapshots/targets/x86/64
-      SDK_NAME: -sdk-x86-64_
-      ARCH: x86_64
+      SDK_URL_PATH: https://downloads.openwrt.org/releases/19.07.10/targets/x86/generic
+      SDK_NAME: -sdk_
+      ARCH: x86_generic
       CACHE_DIR: ~/cache
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
       - name: Setup Cache
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: ${{ env.CACHE_DIR }}
           key: ${{ runner.os }}:openwrt-frp:${{ env.ARCH }}:cache:${{ github.run_number }}
