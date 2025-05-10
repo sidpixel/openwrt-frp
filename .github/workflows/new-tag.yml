@@ -11,7 +11,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     env:
       SDK_URL_PATH: https://downloads.openwrt.org/snapshots/targets/x86/generic
       SDK_NAME: -sdk-x86-generic
@@ -32,7 +32,7 @@ jobs:
       - name: Install Dependencies
         run: |
           sudo apt-get update && \
-            sudo apt-get install -yq gettext libncurses5-dev xsltproc python2
+            sudo apt-get install -yq gettext libncurses5-dev xsltproc 
 
       - name: Prepare SDK Home
         run: |
@@ -52,7 +52,7 @@ jobs:
           retention-days: 7
 
   tag:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     needs: build
     steps:
       - name: Checkout
