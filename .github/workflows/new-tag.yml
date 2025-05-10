@@ -48,7 +48,7 @@ jobs:
         with:
           name: frp
           path: |
-            *.apk
+            "**/*.apk"
           retention-days: 7
 
   tag:
