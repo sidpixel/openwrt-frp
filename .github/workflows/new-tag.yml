@@ -13,8 +13,8 @@ jobs:
   build:
     runs-on: ubuntu-22.04
     env:
-      SDK_URL_PATH: https://downloads.openwrt.org/releases/19.07.10/targets/x86/generic
-      ARCH: x86_generic
+      SDK_URL_PATH: https://downloads.openwrt.org/releases/19.07.10/targets/x86/64
+      ARCH: x86_64
       CACHE_DIR: ~/cache
     steps:
       - name: Checkout
