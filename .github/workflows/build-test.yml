@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     env:
       SDK_URL_PATH: https://downloads.openwrt.org/releases/19.07.10/targets/x86/generic
       SDK_NAME: -sdk-
