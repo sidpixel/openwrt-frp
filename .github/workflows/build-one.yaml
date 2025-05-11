@@ -57,9 +57,8 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          sudo add-apt-repository ppa:deadsnakes/ppa
           sudo apt-get update && \
-            sudo apt-get install -yq gettext libncurses5-dev xsltproc python2
+            sudo apt-get install -yq gettext libncurses5-dev xsltproc 
 
       - name: Prepare SDK Home
         run: |
