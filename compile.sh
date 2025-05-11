@@ -74,6 +74,9 @@ sed -i \
 
 ( test -d "feeds/packages/net/$package_name" && \
 	rm -rf "feeds/packages/net/$package_name" ) || true
+ 
+rm -rf "feeds/packages/lang/golang"
+git clone https://github.com/sbwml/packages_lang_golang feeds/packages/lang/golang
 
 # replace golang with version defined in env
 if [ -n "$golang_commit" ] ; then
