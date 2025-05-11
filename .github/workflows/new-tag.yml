@@ -13,8 +13,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      SDK_URL_PATH: https://downloads.openwrt.org/snapshots/targets/x86/generic
-      SDK_NAME: -sdk-x86-generic
+      SDK_URL_PATH: https://downloads.openwrt.org/releases/23.05.5/targets/x86/generic
+      SDK_NAME: -sdk-
       ARCH: x86_generic
       CACHE_DIR: ~/cache
     steps:
@@ -47,7 +47,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: frp
-          path: ${{ env.SDK_HOME }}/**/*.apk
+          path: ${{ env.SDK_HOME }}/**/*.ipk
           retention-days: 7
 
   tag:
