@@ -80,8 +80,8 @@ if [ -n "$golang_commit" ] ; then
 	( test -d "feeds/packages/lang/golang" && \
 		rm -rf "feeds/packages/lang/golang" ) || true
 
-	curl "https://codeload.github.com/openwrt/packages/tar.gz/$golang_commit" | \
-		tar -xz -C "feeds/packages/lang" --strip=2 "packages-$golang_commit/lang/golang"
+        git clone https://github.com/sbwml/packages_lang_golang feeds/packages/lang/golang
+	
 fi
 
 ln -sf "$dir" "package/$package_name"
