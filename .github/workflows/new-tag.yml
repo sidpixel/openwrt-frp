@@ -3,9 +3,9 @@ name: New Tag
 on:
   push:
     branches:
-      - "releases/v*"
+      - "releases/v**"
     tags-ignore:
-      - "*"
+      - "**"
   workflow_dispatch:
 
 
