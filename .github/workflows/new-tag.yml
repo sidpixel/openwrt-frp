@@ -13,9 +13,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      SDK_URL_PATH: https://downloads.openwrt.org/releases/23.05.5/targets/x86/generic
+      SDK_URL_PATH: https://downloads.openwrt.org/releases/23.05.5/targets/ramips/mt7621
       SDK_NAME: -sdk-
-      ARCH: x86_generic
+      ARCH: ramips-mt7621
       CACHE_DIR: ~/cache
     steps:
       - name: Checkout
