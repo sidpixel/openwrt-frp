@@ -1,4 +1,4 @@
-name: Build and Release
+name: Build and Release one
 
 
 on:
@@ -20,8 +20,8 @@ jobs:
             sdk_url_path: https://downloads.openwrt.org/releases/19.07.10/targets/x86/generic
             sdk_name: -sdk-19.07.10-x86-generic_
           - arch: i386_pentium4
-            sdk_url_path: https://downloads.openwrt.org/snapshots/targets/x86/generic
-            sdk_name: -sdk-x86-generic
+            sdk_url_path: https://downloads.openwrt.org/releases/23.05.5/targets/x86/generic
+            sdk_name: -sdk-23.05.5-x86-generic
           # - arch: arc_arc700
           #   sdk_url_path: https://downloads.openwrt.org/snapshots/targets/arc770/generic
           #   sdk_name: -sdk-arc770-generic_
@@ -72,6 +72,6 @@ jobs:
       - name: Release and Upload Assets
         uses: softprops/action-gh-release@v2
         with:
-          files: "*.apk"
+          files: "*.ipk"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
