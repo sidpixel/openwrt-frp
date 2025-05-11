@@ -35,19 +35,20 @@ jobs:
         if: steps.get_version.outputs.result != ''
         run: |
           latest_version="${{ steps.get_version.outputs.result }}"
-          current_version="$(grep '^PKG_VERSION:' Makefile 2>/dev/null | cut -d'=' -f2)"
+            current_version="$(grep '^PKG_VERSION:' Makefile 2>/dev/null | cut -d'=' -f2 | tr -d ' ')"
 
-          if [ -n "$current_version" ] && \
-            [ "$current_version" != "$latest_version" ] ; then
+          if [ -n "$current_version" ] && [ "$current_version" != "$latest_version" ]; then
             source_hash="$(curl -sL \
               "https://codeload.github.com/fatedier/frp/tar.gz/v$latest_version" | \
               sha256sum | cut -d' ' -f1)"
-            echo "::set-output name=version::$latest_version"
-            echo "::set-output name=source_hash::$source_hash"
+
+            echo "version=$latest_version" >> "$GITHUB_OUTPUT"
+            echo "source_hash=$source_hash" >> "$GITHUB_OUTPUT"
           else
-            echo "::set-output name=version::"
-            echo "::set-output name=source_hash::"
+            echo "version=" >> "$GITHUB_OUTPUT"
+            echo "source_hash=" >> "$GITHUB_OUTPUT"
           fi
+          
 
       - name: Commit New Version
         if: steps.compare_version.outputs.version != '' && steps.compare_version.outputs.source_hash != ''
