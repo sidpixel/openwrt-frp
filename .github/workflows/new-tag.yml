@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - "releases/v*"
-    tags-ignore:
-      - "*"
+    #tags-ignore:
+      #- "*"
   #workflow_dispatch:
 
 
