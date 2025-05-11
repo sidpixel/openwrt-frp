@@ -1,0 +1,77 @@
+name: Build and Release
+
+
+on:
+  push:
+    tags:
+      - "*"
+  repository_dispatch:
+  workflow_dispatch:
+
+jobs:
+  release:
+    name: Build for ${{ matrix.arch }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - arch: i386_pentium4_1907
+            sdk_url_path: https://downloads.openwrt.org/releases/19.07.10/targets/x86/generic
+            sdk_name: -sdk-19.07.10-x86-generic_
+          - arch: i386_pentium4
+            sdk_url_path: https://downloads.openwrt.org/snapshots/targets/x86/generic
+            sdk_name: -sdk-x86-generic
+          # - arch: arc_arc700
+          #   sdk_url_path: https://downloads.openwrt.org/snapshots/targets/arc770/generic
+          #   sdk_name: -sdk-arc770-generic_
+          # - arch: arc_archs
+          #   sdk_url_path: https://downloads.openwrt.org/snapshots/targets/archs38/generic
+          #   sdk_name: -sdk-archs38-generic_
+          # - arch: armeb_xscale
+          #   sdk_url_path: https://downloads.openwrt.org/snapshots/targets/ixp4xx/generic
+          #   sdk_name: -sdk-ixp4xx-generic_
+          # - arch: powerpc_464fp
+          #   sdk_url_path: https://downloads.openwrt.org/snapshots/targets/apm821xx/nand
+          #   sdk_name: -sdk-apm821xx-nand_
+          # - arch: powerpc_8540
+          #   sdk_url_path: https://downloads.openwrt.org/snapshots/targets/mpc85xx/generic
+          #   sdk_name: -sdk-mpc85xx-generic_
+
+    env:
+      SDK_URL_PATH: ${{ matrix.sdk_url_path }}
+      SDK_NAME: ${{ matrix.sdk_name }}
+      ARCH: ${{ matrix.arch }}
+      CACHE_DIR: ~/cache
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.CACHE_DIR }}
+          key: ${{ runner.os }}:openwrt-frp:${{ env.ARCH }}:release:cache:${{ github.run_number }}
+          restore-keys: |
+            ${{ runner.os }}:openwrt-frp:${{ env.ARCH }}:cache:
+
+      - name: Install Dependencies
+        run: |
+          sudo apt-get update && \
+            sudo apt-get install -yq gettext libncurses5-dev xsltproc
+
+      - name: Prepare SDK Home
+        run: |
+          echo "SDK_HOME=$(mktemp -d)" >> $GITHUB_ENV
+
+      - name: Build package
+        env:
+          OPENWRT_GOLANG_COMMIT: ${{ secrets.OPENWRT_GOLANG_COMMIT }}
+        run: sh compile.sh
+
+      - name: Release and Upload Assets
+        uses: softprops/action-gh-release@v2
+        with:
+          files: "*.apk"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
