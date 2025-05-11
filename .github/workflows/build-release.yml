@@ -2,9 +2,9 @@ name: Build and Release
 
 
 on:
-  push:
-    tags:
-      - "*"
+  #push:
+    #tags:
+      #- "*"
   repository_dispatch:
   workflow_dispatch:
 
