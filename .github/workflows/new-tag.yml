@@ -3,7 +3,7 @@ name: New Tag
 on:
   push:
     branches:
-      - "releases/v*"
+      - "*"
     
   workflow_dispatch:
 
