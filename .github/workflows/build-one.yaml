@@ -3,12 +3,10 @@ name: Build and Release one
 
 on:
   push:
-    branches:
-      - '**'   # 匹配所有分支
     tags:
       - "*"
-  repository_dispatch:
-  workflow_dispatch:
+  #repository_dispatch:
+  #workflow_dispatch:
 
 jobs:
   release:
