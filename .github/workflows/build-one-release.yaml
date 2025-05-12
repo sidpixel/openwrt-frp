@@ -22,7 +22,7 @@ jobs:
           - arch: i386_pentium4
             sdk_url_path: https://downloads.openwrt.org/releases/23.05.5/targets/x86/generic
             sdk_name: -sdk-23.05.5-x86-generic
-          - arch: ramips_mt7621
+          - arch: ramips_mt7621_1907
             sdk_url_path: https://downloads.openwrt.org/releases/19.07.10/targets/ramips/mt7621
             sdk_name: -sdk-19.07.10-ramips
           # - arch: arc_archs
