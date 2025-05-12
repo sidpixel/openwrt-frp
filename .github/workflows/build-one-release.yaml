@@ -11,7 +11,7 @@ on:
 jobs:
   release:
     name: Build for ${{ matrix.arch }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     strategy:
       fail-fast: false
       matrix:
@@ -22,9 +22,9 @@ jobs:
           - arch: i386_pentium4
             sdk_url_path: https://downloads.openwrt.org/releases/23.05.5/targets/x86/generic
             sdk_name: -sdk-23.05.5-x86-generic
-          # - arch: arc_arc700
-          #   sdk_url_path: https://downloads.openwrt.org/snapshots/targets/arc770/generic
-          #   sdk_name: -sdk-arc770-generic_
+          - arch: ramips_mt7621
+            sdk_url_path: https://downloads.openwrt.org/releases/19.07.10/targets/ramips/mt7621
+            sdk_name: -sdk-19.07.10-ramips
           # - arch: arc_archs
           #   sdk_url_path: https://downloads.openwrt.org/snapshots/targets/archs38/generic
           #   sdk_name: -sdk-archs38-generic_
@@ -58,7 +58,7 @@ jobs:
       - name: Install Dependencies
         run: |
           sudo apt-get update && \
-            sudo apt-get install -yq gettext libncurses5-dev xsltproc 
+            sudo apt-get install -yq gettext libncurses5-dev xsltproc  python2
 
       - name: Prepare SDK Home
         run: |
@@ -72,6 +72,7 @@ jobs:
       - name: Release and Upload Assets
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: v0.62.1
           files: "*.ipk"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
