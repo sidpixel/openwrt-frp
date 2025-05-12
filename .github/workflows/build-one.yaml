@@ -4,7 +4,7 @@ name: Build and Release one
 on:
   push:
     tags:
-      - "*"
+      - "v*"
   #repository_dispatch:
   workflow_dispatch:
 
